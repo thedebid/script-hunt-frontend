@@ -1,0 +1,87 @@
+*,
+*::before:not(i),
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d0d0d5d7;
+  justify-content: start;
+}
+
+/* Game Category Starts*/
+
+.heading_category {
+  margin: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.wrapper-category {
+  min-height: 85vh;
+}
+
+.games_category {
+  background-color: #d7d7dc;
+}
+
+.wrapper-category .games_category {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+}
+
+.wrapper-category .games_category .category {
+  height: 250px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #d7d7dc;
+  border: 3px solid #fff;
+}
+
+.wrapper-category i {
+  font-size: 8rem;
+}
+
+.button {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #0a0a23;
+  color: #fff;
+  border: 3px solid #fff;
+  transition: 0.3s ease-out;
+}
+
+.button:hover {
+  background-color: #f0f0f0;
+  border: 3px solid #0a0a23;
+  color: #0a0a23;
+  transition: 0.3s ease-in;
+}
+
+.button:focus {
+  outline: none;
+}
+
+/* Game Category Ends*/
+
+/* Footer Starts */
+.footer {
+  width: 100%;
+  background-color: #0a0a23;
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+}
+/* Footer Ends*/

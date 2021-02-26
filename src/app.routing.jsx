@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Login from "./components/auth/Login/login";
 import Register from "./components/auth/Register/register";
-import Home from "./components/home/home";
+import Home from "./components/Home/home";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
@@ -45,39 +45,6 @@ export const AppRouting = (props) => {
           <PublicRoute path="/register" component={Register}></PublicRoute>
           <PublicRoute path="/login" component={Login}></PublicRoute>
           <ProtectedRoute path="/home" component={Home}></ProtectedRoute>
-          {/* <PublicRoute
-            path="/forgot_password"
-            component={ForgotPassword}
-          ></PublicRoute>
-          <PublicRoute
-            path="/reset_password/:id"
-            component={ResetPassword}
-          ></PublicRoute> */}
-          {/* <ProtectedRoute
-            path="/dashboard"
-            component={Dashboard}
-          ></ProtectedRoute> */}
-          {/* <ProtectedRoute
-            path="/add_product"
-            component={AddProduct}
-          ></ProtectedRoute>
-          <ProtectedRoute
-            path="/view_product"
-            component={ViewProduct}
-          ></ProtectedRoute>
-          <ProtectedRoute
-            path="/edit_product/:id"
-            component={EditProduct}
-          ></ProtectedRoute>
-          <ProtectedRoute
-            path="/messages"
-            component={MessageComponent}
-          ></ProtectedRoute>
-          <PublicRoute
-            path="/search_product"
-            component={SearchProduct}
-          ></PublicRoute>
-          <PublicRoute component={NotFound} /> */}
         </Switch>
       </BrowserRouter>
     </>

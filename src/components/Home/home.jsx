@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import Nav from "./../common/nav";
+import Nav from "./../common/Nav/nav";
 import "./home.css";
+import Footer from "./../common/Footer/footer";
+import Category from "./../Category/category";
+
 class Home extends Component {
   constructor() {
     super();
@@ -19,6 +22,8 @@ class Home extends Component {
     return (
       <div className="wrapper">
         <Nav username={this.state.user.name}></Nav>
+        <Category></Category>
+        <Footer></Footer>
       </div>
     );
   }
