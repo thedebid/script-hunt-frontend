@@ -41,7 +41,7 @@ function Login() {
           </div>
 
           <div className="row username">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Username</label><br/>
             <input
               type="text"
               name="username"
@@ -54,7 +54,7 @@ function Login() {
             />
           </div>
           <div className="row password">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password</label><br/>
             <input
               type="password"
               name="password"
