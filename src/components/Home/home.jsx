@@ -1,31 +1,55 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./../common/Nav/nav";
 import "./home.css";
 import Footer from "./../common/Footer/footer";
+import httpClient from "./../../utils/httpClient";
+import notify from "./../../utils/notify";
+import { QuizStateContext } from "./../../context/context";
 import Category from "./../Category/category";
+import Level from "./../Level/level";
 
-class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: "",
-    };
-  }
-  componentDidMount() {
-    const user = localStorage.getItem("user");
-    this.setState({
-      user: JSON.parse(user),
-    });
-  }
+function Home() {
+  const [user, setUser] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [gameState, setGameState] = useState("category");
+  const [selectedCategory, setSelectedCategory] = useState();
 
-  render() {
-    return (
-      <div className="wrapper">
-        <Nav username={this.state.user.name}></Nav>
-        <Category></Category>
-        <Footer></Footer>
-      </div>
-    );
-  }
+  useEffect(() => {
+    //fetch user name
+    const u = localStorage.getItem("user");
+    setUser(JSON.parse(u).name);
+    //fetch categories
+    httpClient
+      .GET("/category")
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((err) => {
+        notify.handleError(err);
+      })
+      .finally(() => {
+        //
+      });
+  }, []);
+
+  return (
+    <div className="wrapper">
+      <Nav username={user}></Nav>
+      <QuizStateContext.Provider
+        value={{
+          gameState,
+          setGameState,
+          selectedCategory,
+          setSelectedCategory,
+        }}
+      >
+        {gameState === "category" && <Category categories={categories} />}
+        {gameState === "level" && <Level />}
+        {/* {gameState === "finished" && <EndScreen />} */}
+      </QuizStateContext.Provider>
+      <Footer></Footer>
+    </div>
+  );
 }
+
 export default Home;

@@ -6,6 +6,16 @@ const http = axios.create({
   responseType: "json",
 });
 
+function getHeaders(isSecured) {
+  let options = {
+    "Content-Type": "application/json",
+  };
+  if (isSecured) {
+    options["Authorization"] = localStorage.getItem("token");
+  }
+  return options;
+}
+
 function POST(url, data, params = {}) {
   /// console.log(data);
   return http.post(url, data, {
@@ -13,6 +23,14 @@ function POST(url, data, params = {}) {
   });
 }
 
+function GET(url, isSecure = true, params = {}) {
+  return http.get(url, {
+    headers: getHeaders(isSecure),
+    params,
+  });
+}
+
 export default {
   POST,
+  GET,
 };
