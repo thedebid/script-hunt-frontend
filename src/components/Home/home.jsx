@@ -7,7 +7,7 @@ import notify from "./../../utils/notify";
 import { QuizStateContext } from "./../../context/context";
 import Category from "./../Category/category";
 import Level from "./../Level/level";
-
+import Quiz from "./../quiz/quiz";
 function Home() {
   const [user, setUser] = useState("");
   const [categories, setCategories] = useState([]);
@@ -33,22 +33,26 @@ function Home() {
   }, []);
 
   return (
-    <div className="wrapper">
+    <>
       <Nav username={user}></Nav>
-      <QuizStateContext.Provider
-        value={{
-          gameState,
-          setGameState,
-          selectedCategory,
-          setSelectedCategory,
-        }}
-      >
-        {gameState === "category" && <Category categories={categories} />}
-        {gameState === "level" && <Level />}
-        {/* {gameState === "finished" && <EndScreen />} */}
-      </QuizStateContext.Provider>
-      <Footer></Footer>
-    </div>
+      <div className="wrapper">
+        <QuizStateContext.Provider
+          value={{
+            gameState,
+            setGameState,
+            selectedCategory,
+            setSelectedCategory,
+          }}
+        >
+          {gameState === "category" && <Category categories={categories} />}
+          {gameState === "level" && <Level />}
+          {gameState === "playing" && <Quiz />}
+          {gameState === "finished" && <Category categories={categories} />}
+          {/* {gameState === "finished" && <EndScreen />} */}
+        </QuizStateContext.Provider>
+        <Footer></Footer>
+      </div>
+    </>
   );
 }
 
