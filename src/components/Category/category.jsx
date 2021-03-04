@@ -2,12 +2,7 @@ import React, { useContext } from "react";
 import { QuizStateContext } from "./../../context/context";
 
 function Category(props) {
-  const {
-    gameState,
-    setGameState,
-    selectedCategory,
-    setSelectedCategory,
-  } = useContext(QuizStateContext);
+  const { setGameState, setSelectedCategory } = useContext(QuizStateContext);
 
   function selectLevel(categoryName) {
     setSelectedCategory(categoryName);
@@ -28,7 +23,6 @@ function Category(props) {
                   type="button"
                   value={item.name}
                   className="button buttonhtml"
-                  // onClick={selectLevel(item.name)}
                   onClick={() => {
                     selectLevel(item.name);
                   }}

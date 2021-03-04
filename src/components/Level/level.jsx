@@ -2,17 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { QuizStateContext } from "./../../context/context";
 import httpClient from "./../../utils/httpClient";
 import notify from "./../../utils/notify";
-
 import "./level.css";
 function Level(props) {
   const {
-    gameState,
+    user,
     setGameState,
     selectedCategory,
     setSelectedCategory,
+    setPassedQuestions,
+    setSelectedLevel,
   } = useContext(QuizStateContext);
 
   const [level, setLevel] = useState([]);
+  const [levelStatus, setLevelStatus] = useState([]);
 
   useEffect(() => {
     //fetch level
@@ -27,12 +29,44 @@ function Level(props) {
       .finally(() => {
         //
       });
+    //fetch level history
+    httpClient
+      .GET("/level/history", true, {
+        uid: user._id,
+        cid: selectedCategory,
+      })
+      .then((response) => {
+        setLevelStatus(response.data);
+      })
+      .catch((err) => {
+        notify.handleError(err);
+      })
+      .finally(() => {
+        //
+      });
   }, []);
+
+  //back to category
   function BackToCat() {
     setSelectedCategory();
     setGameState("category");
   }
-  console.log(level);
+
+  //check level weather locked or unlocked
+  function getStatus(level, sts, i) {
+    // console.log(level);
+    if (i === 0) {
+      return "Unlocked";
+    }
+    let a = sts.find((i) => {
+      if (level._id === i.lid) {
+        return i.status;
+      }
+    });
+    if (typeof a === "object") {
+      return a.status;
+    }
+  }
   return (
     <>
       <div className="wrapper-level">
@@ -44,7 +78,25 @@ function Level(props) {
             <div className="level-category" key={item._id}>
               <p className="level-title">{item.name}</p>
               <div className="category_btn">
-                <input type="button" value="Play" className="button" />
+                {getStatus(item, levelStatus, i) === "Unlocked" ? (
+                  <input
+                    type="button"
+                    value="Play"
+                    className="button"
+                    onClick={() => {
+                      setSelectedLevel(item.name);
+                      setPassedQuestions(0);
+                      setGameState("playing");
+                    }}
+                  />
+                ) : (
+                  <input
+                    type="button"
+                    value="Play"
+                    className="button"
+                    disabled
+                  />
+                )}
               </div>
             </div>
           ))}
