@@ -3,22 +3,26 @@ import { useState, useContext, useEffect } from "react";
 import { QuizStateContext } from "./../../context/context";
 import httpClient from "./../../utils/httpClient";
 import notify from "./../../utils/notify";
-import Questions from "./Question/question";
+import Questions from "./question/question";
 
 function Quiz() {
   const [questions, setQuestions] = useState([]);
-  const { selectedCategory } = useContext(QuizStateContext);
+  const { selectedCategory, setTotalQuestions, selectedLevel } = useContext(
+    QuizStateContext
+  );
 
   useEffect(() => {
-    const selectedLevelId = JSON.parse(localStorage.getItem("levelId"));
+    //  const selectedLevelId = JSON.parse(localStorage.getItem("levelId"));
 
     httpClient
       .GET("/question", true, {
         category: selectedCategory,
-        level: selectedLevelId,
+        level: selectedLevel,
       })
       .then((response) => {
+        setTotalQuestions(response.data.length);
         setQuestions(response.data);
+        // console.log(response.data);
       })
       .catch((err) => {
         notify.handleError(err);

@@ -16,9 +16,11 @@ function getHeaders(isSecured) {
   return options;
 }
 
-function POST(url, data, params = {}) {
+function POST(url, data, isSecure = false, params = {}) {
+  // console.log(data, isSecure);
   /// console.log(data);
   return http.post(url, data, {
+    headers: getHeaders(isSecure),
     params,
   });
 }

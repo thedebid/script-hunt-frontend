@@ -1,31 +1,68 @@
-import { useState, useContext } from "react";
-import { QuizStateContext } from "./../../../context/context";
-import httpClient from "./../../../utils/httpClient";
-import notify from "./../../../utils/notify";
+import { useState, useContext, useRef } from "react";
+import { QuizStateContext } from "../../../context/context";
+import httpClient from "../../../utils/httpClient";
+import notify from "../../../utils/notify";
 
 function Questions({ questions }) {
-  const { score, setScore, setGameState, selectedCategory } = useContext(
-    QuizStateContext
-  );
-  const selectedLevel = JSON.parse(localStorage.getItem("level"));
-  const [optionChosen, setOptionChosen] = useState("");
+  const {
+    setGameState,
+    selectedCategory,
+    passedQuestions,
+    setPassedQuestions,
+    selectedLevel,
+  } = useContext(QuizStateContext);
+
+  //  const selectedLevel = JSON.parse(localStorage.getItem("level"));
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answerState, setAnswerState] = useState("unSelected");
+  const btn1Status = useRef();
+  const btn2Status = useRef();
+  const btn3Status = useRef();
+  const btn4Status = useRef();
 
-  const nextQuestion = () => {
-    if (questions[currentQuestion].answer == optionChosen) {
-      setScore(score + 1);
-    }
+  function nextQuestion() {
+    //Enable answer button on next questions
+    btn1Status.current.disabled = false;
+    btn2Status.current.disabled = false;
+    btn3Status.current.disabled = false;
+    btn4Status.current.disabled = false;
     setCurrentQuestion(currentQuestion + 1);
-  };
-
+  }
+  //Finish Quiz
   const finishQuiz = () => {
-    if (questions[currentQuestion].answer == optionChosen) {
-      setScore(score + 1);
-    }
     setGameState("finished");
   };
   const chooseOption = (option) => {
+    //Disable other answers
+    switch (option) {
+      case 0:
+        //Disable except first button
+        btn2Status.current.disabled = true;
+        btn3Status.current.disabled = true;
+        btn4Status.current.disabled = true;
+        break;
+      case 1:
+        //Disable except second button
+        btn1Status.current.disabled = true;
+        btn3Status.current.disabled = true;
+        btn4Status.current.disabled = true;
+        break;
+      case 2:
+        //Disable except third button
+        btn1Status.current.disabled = true;
+        btn2Status.current.disabled = true;
+        btn4Status.current.disabled = true;
+        break;
+      case 3:
+        //Disable except fourth button
+        btn1Status.current.disabled = true;
+        btn2Status.current.disabled = true;
+        btn3Status.current.disabled = true;
+        break;
+      default:
+    }
+
+    //Check Answer
     httpClient
       .GET("/question/checkAnswer/" + questions[currentQuestion]._id, true, {
         answer: option,
@@ -34,8 +71,10 @@ function Questions({ questions }) {
         setAnswerState(response.data.message);
         if (response.data.message === "Wrong Answer")
           notify.showWarning(response.data.message);
-        if (response.data.message === "Correct Answer")
+        if (response.data.message === "Correct Answer") {
+          setPassedQuestions(passedQuestions + 1);
           notify.showSuccess(response.data.message);
+        }
       })
       .catch((err) => {
         notify.handleError(err);
@@ -44,8 +83,6 @@ function Questions({ questions }) {
         //
       });
   };
-  console.log(questions.length);
-
   return (
     <>
       {questions.length > 0 ? (
@@ -75,6 +112,7 @@ function Questions({ questions }) {
               onClick={() => {
                 chooseOption(0);
               }}
+              ref={btn1Status}
             >
               {questions[currentQuestion]?.answers?.[0]}
             </button>
@@ -89,6 +127,7 @@ function Questions({ questions }) {
               onClick={() => {
                 chooseOption(1);
               }}
+              ref={btn2Status}
             >
               {questions[currentQuestion]?.answers?.[1]}
             </button>
@@ -103,6 +142,7 @@ function Questions({ questions }) {
               onClick={() => {
                 chooseOption(2);
               }}
+              ref={btn3Status}
             >
               {questions[currentQuestion]?.answers?.[2]}
             </button>
@@ -117,6 +157,7 @@ function Questions({ questions }) {
               onClick={() => {
                 chooseOption(3);
               }}
+              ref={btn4Status}
             >
               {questions[currentQuestion]?.answers?.[3]}
             </button>
@@ -125,7 +166,7 @@ function Questions({ questions }) {
           <div className="quiz-navigation">
             <button className="show-answer btn">Show Answer</button>
 
-            {currentQuestion == questions.length - 1 ? (
+            {currentQuestion === questions.length - 1 ? (
               <button onClick={finishQuiz} id="next-question btn">
                 Finish Quiz
               </button>

@@ -2,22 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import { QuizStateContext } from "./../../context/context";
 import httpClient from "./../../utils/httpClient";
 import notify from "./../../utils/notify";
-
 import "./level.css";
 function Level(props) {
   const {
-    gameState,
+    user,
     setGameState,
     selectedCategory,
     setSelectedCategory,
+    setPassedQuestions,
+    setSelectedLevel,
   } = useContext(QuizStateContext);
 
   const [level, setLevel] = useState([]);
   const [levelStatus, setLevelStatus] = useState([]);
-  useEffect(() => {
-    const u = localStorage.getItem("user");
-    const uid = JSON.parse(u)._id;
 
+  useEffect(() => {
     //fetch level
     httpClient
       .GET("/level", true, { category: selectedCategory })
@@ -30,10 +29,10 @@ function Level(props) {
       .finally(() => {
         //
       });
-
+    //fetch level history
     httpClient
       .GET("/level/history", true, {
-        uid: uid,
+        uid: user._id,
         cid: selectedCategory,
       })
       .then((response) => {
@@ -46,11 +45,16 @@ function Level(props) {
         //
       });
   }, []);
+
+  //back to category
   function BackToCat() {
     setSelectedCategory();
     setGameState("category");
   }
+
+  //check level weather locked or unlocked
   function getStatus(level, sts, i) {
+    // console.log(level);
     if (i === 0) {
       return "Unlocked";
     }
@@ -80,11 +84,8 @@ function Level(props) {
                     value="Play"
                     className="button"
                     onClick={() => {
-                      localStorage.setItem("levelId", JSON.stringify(item._id));
-                      localStorage.setItem("level", JSON.stringify(item.name));
-
-                      //console.log(item.name);
-                      // setSelectedLevel(item.name);
+                      setSelectedLevel(item.name);
+                      setPassedQuestions(0);
                       setGameState("playing");
                     }}
                   />
