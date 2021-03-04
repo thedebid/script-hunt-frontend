@@ -23,7 +23,6 @@ function Category(props) {
           {props.categories.map((item, i) => (
             <div className="category" key={item._id}>
               <i className={"devicon-" + item.icon + "-plain"}></i>
-              <i className="devicon-aftereffects-plain"></i>
               <div className="category_btn">
                 <input
                   type="button"
