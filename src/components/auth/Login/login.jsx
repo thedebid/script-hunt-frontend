@@ -1,5 +1,4 @@
 import React from "react";
-import "../auth.css";
 import httpClient from "./../../../utils/httpClient";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";

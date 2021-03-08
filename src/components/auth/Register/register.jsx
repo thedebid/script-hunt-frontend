@@ -1,5 +1,4 @@
 import React from "react";
-import "../auth.css";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";

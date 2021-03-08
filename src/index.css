@@ -1,4 +1,4 @@
-body {
+body:not(i) {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -13,3 +13,146 @@ code {
 }
 
 @import "devicon/devicon.min.css";
+
+
+
+/* Custom CSS */
+/* Login / Singup / Auth Component Starts*/
+
+*,
+*::after,
+*::before:not(i) {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.wrappe {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d7d7dc;
+  height: 100vh;
+}
+
+.startScreen,
+.signupscreen {
+  color: #0a0a23;
+}
+
+.loginHeading {
+  font-size: 2rem;
+  text-decoration: underline;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.startScreenLoginArea,
+.SignUp {
+  background-color: #fff;
+  padding: 35px;
+  border-radius: 5px;
+}
+
+.startScreenLoginArea .row,
+.SignUp .row {
+  background-color: #fff;
+  margin: 5px;
+}
+
+.startScreenLoginArea,
+.SignUp {
+  font-size: 1.5rem;
+  /* text-align: center; */
+}
+
+.startScreenLoginArea input,
+.SignUp input {
+  width: 320px;
+  max-width: 100%;
+  height: 40px;
+  font-size: 1.1rem;
+}
+
+/* .username,
+.password,
+.usermail {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+} */
+
+/* .startScreenLoginArea .loginButtonRow,
+.SignUp .loginButtonRow {
+  display: flex;
+  justify-content: flex-end;
+} */
+
+label {
+  font-size: 1.2rem;
+}
+
+/* .registerRow {
+  position: relative;
+  text-align: center;
+  font-weight: 600;
+} */
+
+a:visited {
+  color: #0a0a23;
+}
+.reg-p {
+  margin-top: 10px;
+}
+@media (max-width: 400px) {
+  .startScreenLoginArea,
+  .SignUp {
+    background-color: #3b3b4f;
+    border-radius: 5px;
+    padding: 20px;
+  }
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #0a0a23;
+}
+
+.loginButtonRow {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.reg-p,
+.reg-p a {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.reg-p a {
+  font-weight: 700;
+}
+
+.loginButtonRow .signupButton {
+  width: 100px;
+  font-size: 1rem;
+}
+
+.loginButtonRow .loginButton {
+  width: 100px;
+  font-size: 1.2rem;
+}
+.error {
+  color: #c13f51;
+  font-size: 12px;
+  margin: 5px;
+}
+
+
+/* Login / Singup / Auth Component Ends*/
+
