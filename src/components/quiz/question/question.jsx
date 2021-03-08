@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { QuizStateContext } from "../../../context/context";
 import httpClient from "../../../utils/httpClient";
 import notify from "../../../utils/notify";
@@ -11,10 +11,10 @@ function Questions({ questions }) {
     setPassedQuestions,
     selectedLevel,
   } = useContext(QuizStateContext);
-
   //  const selectedLevel = JSON.parse(localStorage.getItem("level"));
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answerState, setAnswerState] = useState("unSelected");
+  const [disable, setDisable] = useState(true);
   const btn1Status = useRef();
   const btn2Status = useRef();
   const btn3Status = useRef();
@@ -26,13 +26,16 @@ function Questions({ questions }) {
     btn2Status.current.disabled = false;
     btn3Status.current.disabled = false;
     btn4Status.current.disabled = false;
+    setDisable(true);
     setCurrentQuestion(currentQuestion + 1);
   }
   //Finish Quiz
   const finishQuiz = () => {
     setGameState("finished");
   };
+
   const chooseOption = (option) => {
+    setDisable(false);
     //Disable other answers
     switch (option) {
       case 0:
@@ -83,6 +86,23 @@ function Questions({ questions }) {
         //
       });
   };
+  function showAnswer() {
+    httpClient
+      .GET("/question/getAnswer/" + questions[currentQuestion]._id, true, {})
+      .then((response) => {
+        //console.log(response.data.answers[response.data.correct_answer_index]);
+        notify.showInfo(
+          "Correct Answer : " +
+            response.data?.answers?.[response.data.correct_answer_index]
+        );
+      })
+      .catch((err) => {
+        notify.handleError(err);
+      })
+      .finally(() => {
+        //
+      });
+  }
   return (
     <>
       {questions.length > 0 ? (
@@ -164,14 +184,24 @@ function Questions({ questions }) {
           </div>
           <hr />
           <div className="quiz-navigation">
-            <button className="show-answer btn">Show Answer</button>
+            <button
+              className="show-answer btn"
+              disabled={disable ? true : false}
+              onClick={showAnswer}
+            >
+              Show Answer
+            </button>
 
             {currentQuestion === questions.length - 1 ? (
               <button onClick={finishQuiz} id="next-question btn">
                 Finish Quiz
               </button>
             ) : (
-              <button onClick={nextQuestion} id="next-question btn">
+              <button
+                onClick={nextQuestion}
+                id="next-question btn"
+                disabled={disable ? true : false}
+              >
                 Next Question
               </button>
             )}
