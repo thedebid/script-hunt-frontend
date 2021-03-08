@@ -1,4 +1,3 @@
-import "./quiz.css";
 import { useState, useContext, useEffect } from "react";
 import { QuizStateContext } from "./../../context/context";
 import httpClient from "./../../utils/httpClient";

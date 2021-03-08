@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { QuizStateContext } from "./../../context/context";
 import httpClient from "./../../utils/httpClient";
 import notify from "./../../utils/notify";
-import "./level.css";
 function Level(props) {
   const {
     user,

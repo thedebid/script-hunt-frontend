@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Nav from "./../common/Nav/nav";
-import "./home.css";
 import Footer from "./../common/Footer/footer";
 import httpClient from "./../../utils/httpClient";
 import notify from "./../../utils/notify";
@@ -39,7 +38,7 @@ function Home() {
   return (
     <>
       <Nav username={user.name} />
-      <div className="wrapper">
+      <div className="wrapper-ofcategory">
         <QuizStateContext.Provider
           value={{
             gameState,
@@ -59,9 +58,9 @@ function Home() {
           {gameState === "level" && <Level />}
           {gameState === "playing" && <Quiz />}
           {gameState === "finished" && <Summary />}
-        </QuizStateContext.Provider>
-        <Footer />
+        </QuizStateContext.Provider> 
       </div>
+      <Footer />
     </>
   );
 }

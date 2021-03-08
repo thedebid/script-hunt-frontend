@@ -1,3 +1,14 @@
+*,
+*::after,
+*::before:not(i) {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
 body:not(i) {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -18,17 +29,6 @@ code {
 
 /* Custom CSS */
 /* Login / Singup / Auth Component Starts*/
-
-*,
-*::after,
-*::before:not(i) {
-  box-sizing: border-box;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 500;
-  font-size: 1rem;
-}
 
 .wrappe {
   width: 100%;
@@ -103,7 +103,7 @@ label {
   font-weight: 600;
 } */
 
-a:visited {
+reg-p a:visited {
   color: #0a0a23;
 }
 .reg-p {
@@ -153,6 +153,419 @@ hr {
   margin: 5px;
 }
 
+.loginButton, .signupButton {
+  background-color: #0a0a23;
+  color: #fff;
+  border: 3px solid #0a0a23;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+
+.loginButton:hover, .signupButton:hover {
+  background-color: #fff;
+  color: #0a0a23;
+  border: 3px solid #0a0a23;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
 
 /* Login / Singup / Auth Component Ends*/
 
+
+/* Header Starts / Nav Component */
+
+.nav-bar {
+  width: 100%;
+  background-color: #0a0a23;
+  color: #fff;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-bar nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-bar nav ul li,
+.nav-bar nav ul ul li {
+  padding: 8px;
+}
+
+.nav_links li {
+  border: 2px solid #fff;
+  margin: 5px;
+  transition: 0.3s ease-out;
+}
+
+.nav-bar .logo {
+  border: 2px solid #fff;
+  margin-left: -30px;
+  margin-top: 5px;
+  padding: 10px;
+  transition: 0.3s ease-out;
+}
+
+.nav_links li:hover,
+.logo:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #0a0a23;
+  transition: 0.3s ease-in;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.nav_links button {
+  border: none;
+  background-color: #0a0a23;
+  color: #fff;
+}
+
+/* Header Ends / Nav Component */
+
+/* Footer Starts */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  width: 100%;
+  background-color: #0a0a23;
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+}
+/* Footer Ends*/
+
+/* Game Category Component */
+.wrapper-ofcategory {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d0d0d5d7;
+  justify-content: start;
+}
+
+.wrapper-ofcategory .heading_category {
+  margin: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.wrapper-ofcategory .wrapper-category {
+  min-height: 85vh;
+}
+
+.wrapper-ofcategory .games_category {
+  background-color: #d7d7dc;
+}
+
+.wrapper-category .games_category {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+.wrapper-category .games_category .category {
+  height: 250px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #d7d7dc;
+  border: 3px solid #fff;
+}
+
+.wrapper-category i {
+  font-size: 8rem;
+}
+
+.wrapper-ofcategory .button {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #0a0a23;
+  color: #fff;
+  border: 3px solid #fff;
+  transition: 0.3s ease-out;
+}
+
+.wrapper-ofcategory .button:hover {
+  background-color: #f0f0f0;
+  border: 3px solid #0a0a23;
+  color: #0a0a23;
+  transition: 0.3s ease-in;
+}
+
+.wrapper-ofcategory .button:focus {
+  outline: none;
+}
+
+/* Category Component Ends */
+
+
+/* Level Component Starts */
+.wrapper-level {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d0d0d5d7;
+}
+
+.wrapper-level .heading h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 10px;
+}
+
+/* levels grid */
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+}
+
+.levels-grid .button {
+  margin: 1px;
+  width: 100px;
+  font-size: 0.8rem;
+}
+
+.levels-grid .level-category {
+  background-color: #d0d0d5;
+  width: 150px;
+  height: 150px;
+  border: 3px solid #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.levels-grid .level-category p {
+  font-size: 1.3rem;
+}
+
+.wrapper-level .button {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #0a0a23;
+  color: #fff;
+  border: 3px solid #fff;
+  transition: 0.3s ease-out;
+  font-size: 1.1rem;
+}
+
+.wrapper-level .button:hover {
+  background-color: #f0f0f0;
+  border: 3px solid #0a0a23;
+  color: #0a0a23;
+  transition: 0.3s ease-in;
+}
+
+.wrapper-level .button:focus {
+  outline: none;
+}
+
+.wrapper-level .button:disabled {
+  cursor: pointer;
+  background-color: #0a0a23;
+  color: #fff;
+  border: 3px solid #fff;
+  transition: 0.3s ease-out;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.back-to-category {
+  margin-top: 50px;
+}
+/* Levels Components Ends */
+
+/* Quiz Summary Components Starts */
+.wrapper-summary {
+  min-height: 90vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d0d0d5d7;
+}
+
+.sub-wrapper-summary {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  max-width: 90%;
+  background-color: #0a0a23;
+  color: #fff;
+  border: 3px solid #fff;
+}
+
+.summary-heading,
+.summary-summary,
+.quiz-not-passed-summary,
+.quiz-passed-summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 1.4rem;
+}
+
+.quiz-not-passed-summary,
+.quiz-passed-summary {
+  font-size: 1rem;
+}
+
+.summary-summary {
+  font-size: 1.2rem;
+}
+
+.after-quiz-summary {
+  background-color: #fff;
+  color: #0a0a23;
+  font-weight: 600;
+  margin: 0 auto;
+  border: 2px solid #f0f0f0;
+  width: 60%;
+  text-align: center;
+  font-weight: 700;
+}
+
+.quiz-summary-icon {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 10px;
+  padding: 15px;
+}
+
+.after-quiz-navigation {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  margin: 10px;
+}
+
+.after-quiz-navigation .btn {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #d0d0d5;
+  border: 3px solid #fff;
+  font-size: 1rem;
+  transition: 0.3s ease-out;
+  font-weight: 500;
+}
+
+.after-quiz-navigation .btn:hover {
+  background-color: #0a0a23;
+  color: #fff;
+  transition: 0.3s ease-in;
+}
+
+.after-quiz-navigation .btn:focus {
+  outline: none;
+}
+
+hr {
+  border: none;
+  border-top: 3px solid #fff;
+}
+/* Quiz Summary Components Ends */
+
+/* Quiz Playing Screen / Questions Components Starts */
+.wrapper-for-playing-screen {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d0d0d5d7;
+}
+
+.wrapper-for-playing-screen .sub-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  max-width: 90%;
+  background-color: #0a0a23;
+  color: #fff;
+  border: 3px solid #fff; 
+}
+
+.wrapper-for-playing-screen .heading {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  font-size: 1.2rem;
+}
+.question {
+  margin: 10px 0 10px 20px;
+}
+.quiz-choices {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
+.quiz-choice {
+  margin: 15px;
+  padding: 15px;
+}
+
+.quiz-choice:hover {
+  border: 3px solid #d0d0d5;
+}
+
+.quiz-navigation {
+  display: flex;
+  justify-content: space-around;
+}
+
+.quiz-navigation,
+.quiz-choices,
+.wrapper-for-playing-screen .heading,
+question-box {
+  padding: 10px;
+  margin: 10px;
+}
+
+.quiz-choice-correct:focus {
+  background-color: greenyellow;
+}
+
+.quiz-choice-wrong:focus {
+  background-color: indianred;
+}
+
+.wrapper-for-playing-screen .btn {
+  padding: 8px;
+  cursor: pointer;
+  background-color: #d0d0d5;
+  border: 3px solid #fff;
+}
+
+.wrapper-for-playing-screen .btn:hover {
+  background-color: #f0f0f0;
+}
+
+.wrapper-for-playing-screen .btn:focus {
+  outline: none;
+}
+
+.wrapper-for-playing-screen hr {
+  border: none;
+  border-top: 3px solid #fff;
+}
+
+/* Quiz Playing Screen / Questions Components Ends */

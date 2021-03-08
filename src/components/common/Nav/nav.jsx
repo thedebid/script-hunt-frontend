@@ -1,5 +1,4 @@
 import React from "react";
-import "./nav.css";
 import { useHistory } from "react-router-dom";
 function Nav(props) {
   let history = useHistory();
@@ -18,9 +17,7 @@ function Nav(props) {
           </a>
           <ul className="nav_links">
             <li className="player_name">{props.username}</li>
-            <button className="user_profile logout" onClick={logout}>
-              <li>Log out</li>
-            </button>
+            <button className="user_profile logout" onClick={logout}><li>Log out</li></button>
           </ul>
         </ul>
       </nav>

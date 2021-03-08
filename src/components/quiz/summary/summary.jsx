@@ -1,4 +1,3 @@
-import "./summary.css";
 import { useContext, useState } from "react";
 import { QuizStateContext } from "../../../context/context";
 import httpClient from "./../../../utils/httpClient";
