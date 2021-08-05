@@ -43,7 +43,7 @@ function Level(props) {
       .finally(() => {
         //
       });
-  }, []);
+  }, [selectedCategory, user._id]);
 
   //back to category
   function BackToCat() {
@@ -61,6 +61,7 @@ function Level(props) {
       if (level._id === i.lid) {
         return i.status;
       }
+      return 0;
     });
     if (typeof a === "object") {
       return a.status;

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { QuizStateContext } from "../../../context/context";
 import httpClient from "./../../../utils/httpClient";
 import notify from "./../../../utils/notify";

@@ -6,9 +6,8 @@ import Questions from "./question/question";
 
 function Quiz() {
   const [questions, setQuestions] = useState([]);
-  const { selectedCategory, setTotalQuestions, selectedLevel } = useContext(
-    QuizStateContext
-  );
+  const { selectedCategory, setTotalQuestions, selectedLevel } =
+    useContext(QuizStateContext);
 
   useEffect(() => {
     //  const selectedLevelId = JSON.parse(localStorage.getItem("levelId"));
@@ -29,7 +28,7 @@ function Quiz() {
       .finally(() => {
         //
       });
-  }, []);
+  }, [selectedCategory, selectedLevel, setTotalQuestions]);
 
   return (
     <div className="wrapper-for-playing-screen">
