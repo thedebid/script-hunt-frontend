@@ -22,9 +22,11 @@ function handleError(error) {
   toast.error(errMsg);
 }
 
-export default {
+const exportedObject = {
   showSuccess,
   showInfo,
   showWarning,
   handleError,
 };
+
+export default exportedObject;

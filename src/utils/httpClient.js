@@ -33,7 +33,9 @@ function GET(url, isSecure = true, params = {}) {
   });
 }
 
-export default {
+const exportedObject = {
   POST,
   GET,
 };
+
+export default exportedObject;
